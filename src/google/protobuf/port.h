@@ -170,7 +170,7 @@ template <typename To, typename From>
 void AssertDownCast(From* from) {
   static_assert(std::is_base_of<From, To>::value, "illegal DownCast");
 
-#if defined(__cpp_concepts)
+#if defined(__cpp_concepts) && __cplusplus >= 202002L
   // Check that this function is not used to downcast message types.
   // For those we should use {Down,Dynamic}CastTo{Message,Generated}.
   static_assert(!requires {
